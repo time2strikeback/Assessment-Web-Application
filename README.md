@@ -32,14 +32,38 @@ automatic **PASS** or **FAIL** remark, and the list can be filtered.
 Requires Python 3.12+.
 
 ```
-pip install "django>=5.1" django-filter
+pip install -r requirements.txt
 cd student_grades
 python manage.py migrate
 python manage.py createsuperuser
+```
+
+Turn on debug mode for local development, then start the server.
+
+PowerShell:
+
+```
+$env:DJANGO_DEBUG = "1"
 python manage.py runserver
 ```
 
+macOS / Linux:
+
+```
+DJANGO_DEBUG=1 python manage.py runserver
+```
+
 Then open http://127.0.0.1:8000/.
+
+## Configuration
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `DJANGO_SECRET_KEY` | an insecure development key | Set a real secret for any deployment |
+| `DJANGO_DEBUG` | `0` (off) | Set to `1` for local development |
+| `DJANGO_ALLOWED_HOSTS` | `localhost,127.0.0.1` | Comma-separated host names |
+
+The SQLite database is created locally by `migrate` and isn't committed.
 
 ## Tech
 
